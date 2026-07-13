@@ -162,7 +162,7 @@ else:  # "🧠 Predição de Obesidade"
                     step=0.01,
                     format="%.2f"
                 )
-                st.caption(f"Altura selecionada: {altura:.2f}".replace('.', ',') + " m")
+                # st.caption(f"Altura selecionada: {altura:.2f}".replace('.', ',') + " m")
         
         with st.expander("Medidas e Histórico", expanded=True):
             col1, col2, col3 = st.columns(3)
@@ -338,6 +338,7 @@ else:  # "🧠 Predição de Obesidade"
             paciente_tratado = paciente_tratado.drop(columns=cols_to_drop, errors='ignore')
             
             with st.spinner("Classificando..."):
+                st.write(paciente_tratado)
                 predicao_raw = modelo.predict(paciente_tratado)[0]
                 predicao_traduzida = dict_obesidade.get(predicao_raw, "Categoria desconhecida")
             
