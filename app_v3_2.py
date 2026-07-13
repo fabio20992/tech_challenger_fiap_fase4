@@ -337,7 +337,20 @@ else:  # "🧠 Predição de Obesidade"
             cols_to_drop = [col for col in paciente_tratado.columns if col in ['Obesity', 'IMC']]
             paciente_tratado = paciente_tratado.drop(columns=cols_to_drop, errors='ignore')
             
+            # with st.spinner("Classificando..."):
+            #     predicao_raw = modelo.predict(paciente_tratado)[0]
+            #     predicao_traduzida = dict_obesidade.get(predicao_raw, "Categoria desconhecida")
+
             with st.spinner("Classificando..."):
+                # Garante que todos os dados sejam numéricos
+                paciente_tratado = paciente_tratado.apply(pd.to_numeric, errors='coerce')
+                
+                # Se houver valores NaN (devido a conversões inválidas), preencha com 0 ou remova
+                paciente_tratado = paciente_tratado.fillna(0)
+                
+                # Se o modelo foi treinado com um conjunto específico de colunas, você pode 
+                # salvar a lista de features (ex: numa variável global) e reordenar.
+                # Caso não tenha, o modelo usa a ordem que foi treinada.
                 predicao_raw = modelo.predict(paciente_tratado)[0]
                 predicao_traduzida = dict_obesidade.get(predicao_raw, "Categoria desconhecida")
             
