@@ -2,8 +2,8 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 import joblib
-import os
-from pathlib import Path
+import requests
+from io import BytesIO
 
 # ------------------------------------------------------------
 # CONFIGURAÇÃO DA PÁGINA
@@ -31,14 +31,6 @@ st.sidebar.caption("Desenvolvido para o Tech Challenge - Data Analytics (FIAP)")
 # ------------------------------------------------------------
 # FUNÇÕES DE CARREGAMENTO (com cache)
 # ------------------------------------------------------------
-# @st.cache_data
-# def carregar_dataset():
-#     caminho_pasta = Path(r"C:\Users\fabio\Desktop\Código python\FIAP\FIAP_fase4\0_tech_challenge\Base de dados")
-#     caminho_arquivo = caminho_pasta / "Obesity.csv"
-#     if not caminho_arquivo.exists():
-#         st.error(f"Arquivo de dados não encontrado em: {caminho_arquivo}")
-#         return None
-#     return pd.read_csv(caminho_arquivo)
 
 # Carregando o dataset do github - Melhoria: tentar criar um dicionário com as amostras dos registros necessáias para suprir a criação do df com a coluna 'MTRAS', começando com automovel
 @st.cache_data
@@ -55,11 +47,19 @@ def carregar_dataset():
 
 @st.cache_resource
 def carregar_modelo():
-    caminho_modelo = os.path.join(os.getcwd(), "modelo", "model_lgb.jlib")
-    if not os.path.exists(caminho_modelo):
-        st.error(f"Modelo não encontrado em: {caminho_modelo}")
+    # URL raw do seu modelo no GitHub
+    url = "https://github.com/fabio20992/tech_challenger_fiap_fase4/raw/refs/heads/main/modelo/model_lgb.jlib"
+    try:
+        # Faz o download do conteúdo binário
+        response = requests.get(url)
+        response.raise_for_status()  # Levanta erro se a requisição falhar
+        
+        # Carrega o modelo a partir do conteúdo em memória
+        modelo = joblib.load(BytesIO(response.content))
+        return modelo
+    except Exception as e:
+        st.error(f"Erro ao carregar o modelo do GitHub: {e}")
         return None
-    return joblib.load(caminho_modelo)
 
 # Carrega recursos (somente se necessário)
 df_original = carregar_dataset() if pagina == "🧠 Predição de Obesidade" else None
