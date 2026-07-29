@@ -1,2 +1,9 @@
 # tech_challenger_fiap_fase4
 entrega da fase 4 - fiap- sobre deploy de Machine Learn
+
+Link aplicação:
+https://prevobesidade.streamlit.app/
+
+Link Power BI publicado publicamente:
+https://app.powerbi.com/view?r=eyJrIjoiNDg3NGQ2YjktOGU4Zi00YTRlLWJiYjMtOTVjNzg5NGUxYTVhIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9
+
