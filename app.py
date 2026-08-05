@@ -91,7 +91,8 @@ if pagina == "📊 Análise de Dados":
     
     # INSIRA AQUI O SEU LINK DE EMBED DO POWER BI
     # POWER_BI_EMBED_URL = "https://app.powerbi.com/view?r=eyJrIjoiMGY2ODQ0YjQtYTdmMi00NWI5LTg2ZmUtMGU5ODY3MDgyY2FhIiwidCI6IjM2ZTIxY2JiLWI1YzUtNGQzOC1iYWQ0LTZhMjlmOWQ4ZTZhYiJ9"
-    POWER_BI_EMBED_URL = "https://app.powerbi.com/view?r=eyJrIjoiNDg3NGQ2YjktOGU4Zi00YTRlLWJiYjMtOTVjNzg5NGUxYTVhIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9"
+    # POWER_BI_EMBED_URL = "https://app.powerbi.com/view?r=eyJrIjoiNDg3NGQ2YjktOGU4Zi00YTRlLWJiYjMtOTVjNzg5NGUxYTVhIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9"
+    POWER_BI_EMBED_URL = "https://app.powerbi.com/view?r=eyJrIjoiMDFkZjQyYmItYjNjNC00MWRiLWE5NjEtZGI1MzkxNmZmNjBmIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9"
     
     # Exibe o dashboard usando iframe
     components.html(
